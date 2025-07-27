@@ -46,8 +46,7 @@ So, you want to build tripartiteOS yourself? Great! Follow the instructions give
 | Component                         | Purpose                               | Acquiring a copy                  |
 | :--------------------------------- | :------------------------------------- | :--------------------------------- |
 | `NASM`                            | For assembling 16-bit startup code    | [nasm.us](https://www.nasm.us)    |
-| `MSVC` (CL.EXE)                   | For compiling 32-bit and 64-bit parts | Visual Studio or MSVC Build Tools |
-| `LINK.EXE`                        | For linking your EXE/DOS binaries     | Comes with MSVC                   |
+| `GCC`                             | For compiling 32-bit and 64-bit parts | [https://gcc.gnu.org/](https://gcc.gnu.org/) |
 | `DEBUG.EXE` or `DosBox`           | Optional DOS testing                  | Great for virtual DOS testing     |
 | `QEMU`, `VMware`, or `VirtualBox` | To boot the OS                        | Any x86 emulator                  |
 
