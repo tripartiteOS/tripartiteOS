@@ -32,9 +32,9 @@ You are in full control — write real-mode drivers, flat binary loaders, or 64-
 ### Open-source!
 tripartiteOS is fully open-source and released under GPL v2, meaning everybody can contribute to the project!
 ### Built with industry-leading tools!
-tripartiteOS is built using NASM and MSVC which are industry-leading tools!
+tripartiteOS is built using NASM and MSVC/GCC which are industry-leading tools!
 ### Private!
-tripartiteOS doesn't collect any user data and it doesn't send it anywhere ensuring maximal possible privacy!
+tripartiteOS lacks any telemetry, ensuring maximal privacy!
 ### Secure!
 tripartiteOS isn't vulnerable to any modern-day viruses, malware and threats meaning your data will be safe!
 ## Build guide
