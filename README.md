@@ -31,6 +31,8 @@ tripartiteOS allows for communication between all of the processes — the devel
 You are in full control — write real-mode drivers, flat binary loaders, or 64-bit applications.
 ### Open-source!
 tripartiteOS is fully open-source and released under GPL v2, meaning everybody can contribute to the project!
+
+All config files (`Configs\`) are licensed under CC0!
 ### Built with industry-leading tools!
 tripartiteOS is built using NASM and MSVC/GCC which are industry-leading tools!
 ### Private!
