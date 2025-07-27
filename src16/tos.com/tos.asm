@@ -90,7 +90,9 @@ check_superex_xms:
     mov eax, [total_mem_kb]
     call print_eax_as_decimal
 
-    jmp $
+    ;jmp $
+
+    call pmode_init
 
 xms_error:
     mov dx, msg_superex_error
@@ -144,6 +146,48 @@ print_eax_as_decimal:
     pop ax
     ret
 
+pmode_init:
+    cli
+    lgdt [gdt_descriptor]
+    mov eax, cr0
+    or eax, 1
+    mov cr0, eax
+    jmp 0x08:pmode_entry_point   ; 0x08 = code segment selector
+
+
+gdt_start:
+    dq 0                      ; null descriptor
+
+    ; Code segment: base=0, limit=4 GB, read/execute
+    dw 0xFFFF                 ; limit low
+    dw 0x0000                 ; base low
+    db 0x00                   ; base mid
+    db 10011010b              ; flags: present, ring 0, executable, readable
+    db 11001111b              ; granularity, 32-bit
+    db 0x00                   ; base high
+
+    ; Data segment: base=0, limit=4 GB, read/write
+    dw 0xFFFF
+    dw 0x0000
+    db 0x00
+    db 10010010b              ; flags: present, ring 0, writable
+    db 11001111b
+    db 0x00
+gdt_end:
+
+gdt_descriptor:
+    dw gdt_end - gdt_start - 1
+    dd gdt_start
+
+pmode_entry_point:
+    mov ax, 0x10    ; data selector
+    mov ds, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
+    mov ss, ax
+    jmp $
+    ; yahoo we should be in pmode now
 ; === All data goes at the very end ===
 
 incorrectdos db 'Incorrect DOS version! You need at least 5.0, but detected a lower version.$'
