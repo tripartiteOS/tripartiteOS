@@ -23,6 +23,8 @@
 #### ░░░░░░░░░The triple-era OS░░░░░░░░░
 - 16-bit software? 32-bit? 64-bit? tripartiteOS runs all of them!
 - Fully DOS-compatible — flawlessly runs DOS programs as if you were running under a real DOS!
+
+You'll probably want more DOS tools and drivers, so check out [THIRD_PARTY.md](https://github.com/ProximalElk6186/tripartiteOS/blob/main/THIRD_PARTY.md) for a list of software included with official builds of tripartiteOS.
 ### Why choosing between eras? Have them all!
 tripartiteOS flawlessly runs programs from the 80's, 90's and current day.
 ### Coordinate all programs no matter their age!
