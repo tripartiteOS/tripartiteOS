@@ -148,38 +148,47 @@ print_eax_as_decimal:
 
 pmode_init:
     cli
+
+    in al, 0x92
+    or al, 2
+    out 0x92, al
+
     lgdt [gdt_descriptor]
-    mov eax, cr0
-    or eax, 1
-    mov cr0, eax
+mov eax, cr0 
+or al, 1       ; set PE (Protection Enable) bit in CR0 (Control Register 0)
+mov cr0, eax
+
     jmp 0x08:pmode_entry_point   ; 0x08 = code segment selector
-
-
-gdt_start:
-    dq 0                      ; null descriptor
-
-    ; Code segment: base=0, limit=4 GB, read/execute
-    dw 0xFFFF                 ; limit low
-    dw 0x0000                 ; base low
-    db 0x00                   ; base mid
-    db 10011010b              ; flags: present, ring 0, executable, readable
-    db 11001111b              ; granularity, 32-bit
-    db 0x00                   ; base high
-
-    ; Data segment: base=0, limit=4 GB, read/write
-    dw 0xFFFF
-    dw 0x0000
-    db 0x00
-    db 10010010b              ; flags: present, ring 0, writable
-    db 11001111b
-    db 0x00
+    
+align 16
+gdt:
+    gdt_null:
+        dq 0        
+    
+    gdt_code32:
+    
+    dw 0xFFFFF              ; Limit (15:0)
+    dw 0x0000              ; Base  (15:0)
+    db 0x00                ; Base  (23:16)
+    db 0x9A           ; Access byte
+    db 0xC         ; Flags (4-bit limit + 4-bit flags)
+    db 0x00                ; Base  (31:24) 
+    
+    gdt_data32:
+        dw 0xFFFF
+        dw 0x0000
+        db 0x00
+        db 10010010b          
+        db 11001111b
+        db 0x00
 gdt_end:
 
 gdt_descriptor:
-    dw gdt_end - gdt_start - 1
-    dd gdt_start
+    dw gdt_end - gdt - 1
+    dd gdt
 
 pmode_entry_point:
+    [bits 32]
     mov ax, 0x10    ; data selector
     mov ds, ax
     mov es, ax
