@@ -92,8 +92,9 @@ check_superex_xms:
 
     ;jmp $
 
-    call pmode_init
+    ;call pmode_init
 
+    call start_kernel
 xms_error:
     mov dx, msg_superex_error
     mov ah, 0x09
@@ -146,57 +147,77 @@ print_eax_as_decimal:
     pop ax
     ret
 
-pmode_init:
-    cli
-
-    in al, 0x92
-    or al, 2
-    out 0x92, al
-
-    lgdt [gdt_descriptor]
-mov eax, cr0 
-or al, 1       ; set PE (Protection Enable) bit in CR0 (Control Register 0)
-mov cr0, eax
-
-    jmp 0x08:pmode_entry_point   ; 0x08 = code segment selector
-    
-align 16
-gdt:
-    gdt_null:
-        dq 0        
-    
-    gdt_code32:
-    
-    dw 0xFFFFF              ; Limit (15:0)
-    dw 0x0000              ; Base  (15:0)
-    db 0x00                ; Base  (23:16)
-    db 0x9A           ; Access byte
-    db 0xC         ; Flags (4-bit limit + 4-bit flags)
-    db 0x00                ; Base  (31:24) 
-    
-    gdt_data32:
-        dw 0xFFFF
-        dw 0x0000
-        db 0x00
-        db 10010010b          
-        db 11001111b
-        db 0x00
-gdt_end:
-
-gdt_descriptor:
-    dw gdt_end - gdt - 1
-    dd gdt
-
-pmode_entry_point:
-    [bits 32]
-    mov ax, 0x10    ; data selector
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
-    mov ss, ax
-    jmp $
+;pmode_init:
+;    cli
+;
+;    in al, 0x92
+;    or al, 2
+;    out 0x92, al
+;
+;    lgdt [gdt_descriptor]
+;mov eax, cr0 
+;or al, 1       ; set PE (Protection Enable) bit in CR0 (Control Register 0)
+;mov cr0, eax
+;
+;    jmp 0x08:pmode_entry_point   ; 0x08 = code segment selector
+;    
+;align 16
+;gdt:
+;    gdt_null:
+;        dq 0        
+;    
+;    gdt_code32:
+;    
+;    dw 0xFFFFF              ; Limit (15:0)
+;    dw 0x0000              ; Base  (15:0)
+;    db 0x00                ; Base  (23:16)
+;    db 0x9A           ; Access byte
+;    db 0xC         ; Flags (4-bit limit + 4-bit flags)
+;    db 0x00                ; Base  (31:24) 
+;    
+;    gdt_data32:
+;        dw 0xFFFF
+;        dw 0x0000
+;        db 0x00
+;        db 10010010b          
+;        db 11001111b
+;        db 0x00
+;gdt_end:
+;
+;gdt_descriptor:
+;    dw gdt_end - gdt - 1
+;    dd gdt
+;
+;pmode_entry_point:
+;    [bits 32]
+;    mov ax, 0x10    ; data selector
+;    mov ds, ax
+;    mov es, ax
+;    mov fs, ax
+;    mov gs, ax
+;    mov ss, ax
+;    jmp $
     ; yahoo we should be in pmode now
+
+
+
+start_kernel:
+    mov dx, kernel_name  ; DS:DX -> filename
+    mov ax, 0x4B00        ; EXEC function: load & execute
+    int 0x21              ; call DOS
+    jc  start_kernel_error             ; if CF set, jump to error
+
+    ; Program launched successfully, exit
+    mov ax, 0x4C00
+    int 0x21
+start_kernel_error:
+    ; Print error message
+    mov dx, err_msg
+    mov ah, 9
+    int 0x21
+
+    mov ax, 0x4C01        ; Exit with error code 1
+    int 0x21
 ; === All data goes at the very end ===
 
 incorrectdos db 'Incorrect DOS version! You need at least 5.0, but detected a lower version.$'
@@ -205,6 +226,8 @@ starting_tos db 'Starting tripartiteOS...$'
 msg_superex_success db 'Super-Extended XMS is available, largest block (KB): $'
 msg_superex_total db 13, 10, 'Total available (KB): $'
 msg_superex_error db 'Could not display amount of Super-Extended XMS, tripartiteOS is unable to start.$'
+kernel_name db 'KERNEL.COM$'
+err_msg     db 'Error launching KERNEL.COM$'
 newline db 13, 10, '$'
 
 buffer resb 12

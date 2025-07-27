@@ -1,0 +1,7 @@
+C:\Users\ProximalElk6186\Desktop\tripartiteOS\wrapBinAsExe\WrapBinAsExe\WrapBinAsExe\bin\Debug\WrapBinAsExe.exe.config
+C:\Users\ProximalElk6186\Desktop\tripartiteOS\wrapBinAsExe\WrapBinAsExe\WrapBinAsExe\bin\Debug\WrapBinAsExe.exe
+C:\Users\ProximalElk6186\Desktop\tripartiteOS\wrapBinAsExe\WrapBinAsExe\WrapBinAsExe\bin\Debug\WrapBinAsExe.pdb
+C:\Users\ProximalElk6186\Desktop\tripartiteOS\wrapBinAsExe\WrapBinAsExe\WrapBinAsExe\obj\Debug\WrapBinAsExe.csproj.AssemblyReference.cache
+C:\Users\ProximalElk6186\Desktop\tripartiteOS\wrapBinAsExe\WrapBinAsExe\WrapBinAsExe\obj\Debug\WrapBinAsExe.csproj.CoreCompileInputs.cache
+C:\Users\ProximalElk6186\Desktop\tripartiteOS\wrapBinAsExe\WrapBinAsExe\WrapBinAsExe\obj\Debug\WrapBinAsExe.exe
+C:\Users\ProximalElk6186\Desktop\tripartiteOS\wrapBinAsExe\WrapBinAsExe\WrapBinAsExe\obj\Debug\WrapBinAsExe.pdb
