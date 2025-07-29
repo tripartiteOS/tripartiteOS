@@ -7,6 +7,9 @@
 ;             \================================================/
 org 0x100
 
+palette_size equ logo_palette_end - logo_palette
+image_size equ logo_image_end - logo_image
+
 start:
     xor ax, ax
     mov ax, cs
@@ -94,7 +97,8 @@ check_superex_xms:
 
     ;call pmode_init
 
-    call start_kernel
+    ;call start_kernel
+    call display_bootlogo
 xms_error:
     mov dx, msg_superex_error
     mov ah, 0x09
@@ -200,6 +204,81 @@ print_eax_as_decimal:
     ; yahoo we should be in pmode now
 
 
+display_bootlogo:
+    ; First, set up the graphics mode
+    mov ax, 0x13
+    int 0x10
+    
+
+    ; Unlock CRTC registers (bit 7 of register 0x11 must be cleared)
+mov dx, 0x3D4
+mov al, 0x11
+out dx, al
+inc dx
+in al, dx
+and al, 0x7F
+out dx, al
+
+; Set max scanline register (register 0x09) to 0x00 (8 scanlines per char, not 16)
+mov dx, 0x3D4
+mov al, 0x09
+out dx, al
+inc dx
+mov al, 0x00
+out dx, al
+
+; Disable double-scanning: clear bit 7 of register 0x09
+mov dx, 0x3D4
+mov al, 0x09
+out dx, al
+inc dx
+in al, dx
+and al, 0x7F        ; clear bit 7
+out dx, al
+
+; Set vertical display end (register 0x12) to 399
+mov dx, 0x3D4
+mov al, 0x12
+out dx, al
+inc dx
+mov al, 399         ; Actually 399 == 0x8F
+out dx, al
+
+
+
+
+    ; Then load the palette
+    mov dx, 0x3C8
+    xor al, al
+    out dx, al            ; Start at palette index 0
+
+    mov dx, 0x3C9
+    mov si, logo_palette
+    mov cx, 256           ; 256 colors
+
+.load_palette:
+    lodsb                 ; R
+    shr al, 2
+    out dx, al
+
+    lodsb                 ; G
+    shr al, 2
+    out dx, al
+
+    lodsb                 ; B
+    shr al, 2
+    out dx, al
+
+    loop .load_palette
+
+    ; Finally, load the copy the image itself
+    mov si, logo_image
+    mov di, 0xA000  ; VRAM segment
+    mov es, di
+    xor di, di
+    mov cx, image_size
+    rep movsb
+    jmp $
 
 start_kernel:
     mov dx, kernel_name  ; DS:DX -> filename
@@ -235,3 +314,13 @@ buffer_end:
 
 largest_block_kb dd 0
 total_mem_kb dd 0
+
+
+section .data
+logo_palette:
+    incbin "logo/logo.pal"
+logo_palette_end:
+
+logo_image:
+    incbin "logo/logo.bin"
+logo_image_end:
