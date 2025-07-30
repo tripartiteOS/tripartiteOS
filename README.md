@@ -45,20 +45,30 @@ tripartiteOS isn't vulnerable to any modern-day viruses, malware and threats mea
 So, you want to build tripartiteOS yourself? Great! Follow the instructions given in this section to set up all of the required tools and compile the OS.
 ### Prerequisites
 #### Required Toolchain
-| Component                         | Purpose                               | Acquiring a copy                  |
-| :--------------------------------- | :------------------------------------- | :--------------------------------- |
-| `NASM`                            | For assembling 16-bit startup code    | [nasm.us](https://www.nasm.us)    |
-| `GCC`                             | For compiling 32-bit and 64-bit parts | [https://gcc.gnu.org/](https://gcc.gnu.org/) |
-| `DEBUG.EXE` or `DosBox`           | Optional DOS testing                  | Great for virtual DOS testing     |
-| `QEMU`, `VMware`, or `VirtualBox` | To boot the OS                        | Any x86 emulator                  |
+| Component                         | Purpose                               | Acquiring a copy                                                 |
+| :-------------------------------- | :------------------------------------ | :--------------------------------------------------------------- |
+| `NASM`                            | For assembling 16-bit startup code    | [nasm.us](https://www.nasm.us)                                   |
+| `DJGPP`                           | For compiling 32-bit parts            | [https://www.delorie.com/djgpp/](https://www.delorie.com/djgpp/) |
+| `DEBUG.EXE` or `DosBox`           | Optional DOS testing                  |                                                                  |
+| `QEMU`, `VMware`, or `VirtualBox` | To boot the OS                        |                                                                  |
 
 Add all of the tools to `path`.
+
+>[!WARNING]
+> To compile the 32-bit kernel and utilities, you will need:
+> 
+> - **DJGPP** (tested with version 2.x)
+>   - Set up `DJGPP.ENV` correctly
+>   - Add `bin` directory to your system `PATH`
+> - A **_32-bit version of Windows_** (e.g. Windows XP) or **_real MS-DOS_**
+>   - **64-bit Windows _cannot_ run DJGPP programs** due to lack of 16-bit support
+>   - Alternatively, you can build inside **DOSBox**, **VirtualBox**, or on real hardware
 
 > [!NOTE]
 > Building on Linux is currently not supported. Use Windows to build tripartiteOS.
 #### Project structure
 | Folder    | Contents											|
-| :--------- | :------------------------------------------------- |
+| :-------- | :------------------------------------------------ |
 | `src16\`  | 16-bit DOS-compatible bootstrap code				|
 | `src32\`  | 32-bit kernel components (Protected mode)         |
 | `src64\`  | 64-bit features (long mode support)               |

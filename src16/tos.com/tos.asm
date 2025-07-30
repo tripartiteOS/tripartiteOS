@@ -1,5 +1,5 @@
 ;           |====================================================|
-;           |                     TRINITY-OS                     |
+;           |                   TRIPARTITE-OS                    |
 ;           |            TOS.COM INITIALISATION FILE             |
 ;           |            LETS F***ING GOOOOOOOOOOOOOO            |
 ;           |====================================================|
