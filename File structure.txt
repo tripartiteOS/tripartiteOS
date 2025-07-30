@@ -1,3 +1,6 @@
+
+In tripartiteOS, the file structure should be similar to this:
+
 C:
 {
 	AUTOEXEC.BAT
@@ -10,10 +13,15 @@ C:
 	}
 	TRPRTOS
 	{
+		SYSTEM.INI
+		TRPRTOS.INI
 		SYSTEM
 		{
 			HIMEMSX.EXE
 			TOS.COM
+			KERNEL.EXE
+			CWSDPR0.EXE
+			USERINT.EXE
 			DRIVERS
 			{
 				JEMM386.EXE
