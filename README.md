@@ -63,6 +63,8 @@ Add all of the tools to `path`.
 > - A **_32-bit version of Windows_** (e.g. Windows XP) or **_real MS-DOS_**
 >   - **64-bit Windows _cannot_ run DJGPP programs** due to lack of 16-bit support
 >   - Alternatively, you can build inside **DOSBox**, **VirtualBox**, or on real hardware
+>
+> Regardless, **YOU MUST TEST THE KERNEL UNDER <ins>REAL DOS!</ins>** This is because Windows forces PMODE DOS apps to work in CPU ring 3 whereas tripartiteOS requires ring 0 access.
 
 > [!NOTE]
 > Building on Linux is currently not supported. Use Windows to build tripartiteOS.

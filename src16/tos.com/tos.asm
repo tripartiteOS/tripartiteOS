@@ -312,11 +312,6 @@ display_bootlogo:
     mov cx, 256           ; 256 colors
 
 .load_palette:
-    call delay_125ms
-    call delay_125ms
-    call delay_125ms
-    call delay_125ms
-    call delay_125ms
     lodsb                 ; R
     shr al, 2
     out dx, al
@@ -385,6 +380,29 @@ clear_bottom_line:
     mov ds, ax
 
     mov di, 199 * 320           ; start of line 199
+    mov cx, 320
+    xor al, al                  ; color 0 = black (or set to desired color)
+    rep stosb                   ; fill line with color
+
+    pop ds
+
+    push ds
+    mov ax, 0xA000
+    mov ds, ax
+
+    mov di, 198 * 320           ; start of line 199
+    mov cx, 320
+    xor al, al                  ; color 0 = black (or set to desired color)
+    rep stosb                   ; fill line with color
+
+    pop ds
+
+
+    push ds
+    mov ax, 0xA000
+    mov ds, ax
+
+    mov di, 197 * 320           ; start of line 199
     mov cx, 320
     xor al, al                  ; color 0 = black (or set to desired color)
     rep stosb                   ; fill line with color
