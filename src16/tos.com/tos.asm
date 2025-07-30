@@ -10,6 +10,11 @@ org 0x100
 palette_size equ logo_palette_end - logo_palette
 image_size equ logo_image_end - logo_image
 
+; For fading routines
+%define PALETTE_SEG 0x0A000
+%define PALETTE_OFF 0x8000
+%define FADE_STEPS 32
+
 start:
     xor ax, ax
     mov ax, cs
@@ -210,40 +215,41 @@ display_bootlogo:
     int 0x10
     
 
-    ; Unlock CRTC registers (bit 7 of register 0x11 must be cleared)
-mov dx, 0x3D4
-mov al, 0x11
-out dx, al
-inc dx
-in al, dx
-and al, 0x7F
-out dx, al
-
-; Set max scanline register (register 0x09) to 0x00 (8 scanlines per char, not 16)
-mov dx, 0x3D4
-mov al, 0x09
-out dx, al
-inc dx
-mov al, 0x00
-out dx, al
-
-; Disable double-scanning: clear bit 7 of register 0x09
-mov dx, 0x3D4
-mov al, 0x09
-out dx, al
-inc dx
-in al, dx
-and al, 0x7F        ; clear bit 7
-out dx, al
-
-; Set vertical display end (register 0x12) to 399
-mov dx, 0x3D4
-mov al, 0x12
-out dx, al
-inc dx
-mov al, 399         ; Actually 399 == 0x8F
-out dx, al
-
+    ; Temporarily commented-out (couldn't get the higher-res mode to work correcty, but who cares?)
+;    ; Unlock CRTC registers (bit 7 of register 0x11 must be cleared)
+;mov dx, 0x3D4
+;mov al, 0x11
+;out dx, al
+;inc dx
+;in al, dx
+;and al, 0x7F
+;out dx, al
+;
+;; Set max scanline register (register 0x09) to 0x00 (8 scanlines per char, not 16)
+;mov dx, 0x3D4
+;mov al, 0x09
+;out dx, al
+;inc dx
+;mov al, 0x00
+;out dx, al
+;
+;; Disable double-scanning: clear bit 7 of register 0x09
+;mov dx, 0x3D4
+;mov al, 0x09
+;out dx, al
+;inc dx
+;in al, dx
+;and al, 0x7F        ; clear bit 7
+;out dx, al
+;
+;; Set vertical display end (register 0x12) to 399
+;mov dx, 0x3D4
+;mov al, 0x12
+;out dx, al
+;inc dx
+;mov al, 399         ; Actually 399 == 0x8F
+;out dx, al
+;
 
 
 
@@ -278,8 +284,82 @@ out dx, al
     xor di, di
     mov cx, image_size
     rep movsb
+    ;jmp $
+    pal_fadein
     jmp $
 
+; Assumes that the target palette is loaded at [PALETTE_SEG:PALETTE_OFF]
+; and you are already in the right VGA modes
+pal_fadein:
+    xor cx, cx  ; cx is our step counter
+    .fade_step:
+        push cx
+        mov si, PALETTE_OFF
+        mov ax, 0x0A000
+        mov es, ax
+        mov di, 0   ; Write from offset 0
+
+        mov dx, 0x3C8
+        xor al, al
+        out dx, al  ; Set palette write index to 0
+
+        inc dx      ; 0x3C9 DAC data port
+
+        ; 256 total colors
+        mov bx, 256
+    .color_loop:
+        ; Read color values from [PALETTE_SEG:si]
+        mov al, [PALETTE_SEG:si]
+        mov ah, cl
+        mul ah
+        mov bl, FADE_STEPS
+        div bl
+        out dx, al
+        inc si
+    
+        mov al, [PALETTE_SEG:si]
+        mov ah, cl
+        mul ah
+        div bl
+        out dx, al
+        inc si
+    
+        mov al, [PALETTE_SEG:si]
+        mov ah, cl
+        mul ah
+        div bl
+        out dx, al
+        inc si
+    
+        dec bx
+        jnz .color_loop
+    
+        ; Delay between steps
+        call delay
+    
+        pop cx
+        inc cx
+        cmp cx, FADE_STEPS
+        jb .fade_step
+    
+        ; Done
+        jmp $
+    
+    s
+    delay:
+        push cx
+        push dx
+        mov cx, 0FFFFh
+    .d1:
+        mov dx, 0FFFFh
+    .d2:
+        dec dx
+        jnz .d2
+        dec cx
+        jnz .d1
+        pop dx
+        pop cx
+        ret
 start_kernel:
     mov dx, kernel_name  ; DS:DX -> filename
     mov ax, 0x4B00        ; EXEC function: load & execute
