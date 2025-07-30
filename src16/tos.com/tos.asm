@@ -11,9 +11,9 @@ palette_size equ logo_palette_end - logo_palette
 image_size equ logo_image_end - logo_image
 
 ; For fading routines
-%define PALETTE_SEG 0x0A000
-%define PALETTE_OFF 0x8000
-%define FADE_STEPS 32
+PALETTE_SEG equ 0x0A000
+PALETTE_OFF equ 0x8000
+FADE_STEPS equ 32
 
 start:
     xor ax, ax
@@ -285,11 +285,62 @@ display_bootlogo:
     mov cx, image_size
     rep movsb
     ;jmp $
-    pal_fadein
-    jmp $
+    ;call pal_fadein
+    ;jmp $
+
+loop_start:
+    call scroll_bottom
+    call clear_bottom_line  ; otherwise it looks kinda glitchy
+    call delay
+    jmp loop_start
+
+
+scroll_bottom:
+    push ds
+    mov ax, 0xA000
+    mov ds, ax
+
+    mov cx, 16                                  ; Number of lines
+    mov si, (184 + 15) * 320                    ; Start from line 199 (bottom), go upward
+scroll_line_loop:
+    ; Save last pixel of line
+    mov al, [si + 319]
+
+    ; Shift right
+    mov di, si
+    mov bx, 319
+.scroll_pixel_loop:
+    mov dl, [di + bx - 1]       ; dl = pixel at x-1
+    mov [di + bx], dl           ; move to x
+    dec bx
+    jnz .scroll_pixel_loop
+
+    ; Restore saved pixel to leftmost
+    mov [si], al
+
+    sub si, 320
+    loop scroll_line_loop
+
+    pop ds
+    ret
+
+
+clear_bottom_line:
+    push ds
+    mov ax, 0xA000
+    mov ds, ax
+
+    mov di, 199 * 320           ; start of line 199
+    mov cx, 320
+    xor al, al                  ; color 0 = black (or set to desired color)
+    rep stosb                   ; fill line with color
+
+    pop ds
+    ret
 
 ; Assumes that the target palette is loaded at [PALETTE_SEG:PALETTE_OFF]
 ; and you are already in the right VGA modes
+; heck it isn't even used
 pal_fadein:
     xor cx, cx  ; cx is our step counter
     .fade_step:
@@ -308,8 +359,8 @@ pal_fadein:
         ; 256 total colors
         mov bx, 256
     .color_loop:
-        ; Read color values from [PALETTE_SEG:si]
-        mov al, [PALETTE_SEG:si]
+        ; Read color values from [0x0A000:si]
+        ;mov al, 0x0A000:8000
         mov ah, cl
         mul ah
         mov bl, FADE_STEPS
@@ -317,17 +368,17 @@ pal_fadein:
         out dx, al
         inc si
     
-        mov al, [PALETTE_SEG:si]
+        ;mov al, [0x0A000:si]
         mov ah, cl
         mul ah
         div bl
         out dx, al
         inc si
     
-        mov al, [PALETTE_SEG:si]
+        ;mov al, [0x0A000:si]
         mov ah, cl
-        mul ah
         div bl
+        mul ah
         out dx, al
         inc si
     
@@ -345,21 +396,21 @@ pal_fadein:
         ; Done
         jmp $
     
-    s
-    delay:
-        push cx
-        push dx
-        mov cx, 0FFFFh
-    .d1:
-        mov dx, 0FFFFh
-    .d2:
-        dec dx
-        jnz .d2
-        dec cx
-        jnz .d1
-        pop dx
-        pop cx
-        ret
+    ;s
+    ;delay:
+    ;    push cx
+    ;    push dx
+    ;    mov cx, 0FFFFh
+    ;.d1:
+    ;    mov dx, 0FFFFh
+    ;.d2:
+    ;    dec dx
+    ;    jnz .d2
+    ;    dec cx
+    ;    jnz .d1
+    ;    pop dx
+    ;    pop cx
+    ;    ret
 start_kernel:
     mov dx, kernel_name  ; DS:DX -> filename
     mov ax, 0x4B00        ; EXEC function: load & execute
@@ -377,6 +428,14 @@ start_kernel_error:
 
     mov ax, 0x4C01        ; Exit with error code 1
     int 0x21
+
+delay:
+    mov cx, 0FFFFh
+.delay_loop:
+    nop
+    loop .delay_loop
+    ret
+
 ; === All data goes at the very end ===
 
 incorrectdos db 'Incorrect DOS version! You need at least 5.0, but detected a lower version.$'
@@ -398,9 +457,14 @@ total_mem_kb dd 0
 
 section .data
 logo_palette:
-    incbin "logo/logo.pal"
+    incbin "neologo/logo.data.pal"
 logo_palette_end:
 
 logo_image:
-    incbin "logo/logo.bin"
+    incbin "neologo/logo.data"
 logo_image_end:
+
+scroll_start_line equ 184
+num_scroll_lines  equ 16
+screen_width      equ 320
+video_segment     equ 0xA000
