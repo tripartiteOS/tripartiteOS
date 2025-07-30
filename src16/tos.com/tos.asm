@@ -103,7 +103,7 @@ check_superex_xms:
     ;call pmode_init
 
     ;call start_kernel
-    call display_bootlogo
+    call display_disclaimer
 xms_error:
     mov dx, msg_superex_error
     mov ah, 0x09
@@ -208,6 +208,55 @@ print_eax_as_decimal:
 ;    jmp $
     ; yahoo we should be in pmode now
 
+display_disclaimer:
+    ; Set video mode (optional, e.g., 03h = 80x25 text)
+    mov ah, 0
+    mov al, 3
+    int 10h
+
+    ; Print the disclaimer
+    mov dx, disclaimer
+    call print_string
+
+    ; Delay ~0.5 seconds
+    ;mov cx, 4         ; Loop this delay for better visibility
+;delay_loop:
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+;    loop delay_loop
+    call display_bootlogo
+; ==========================
+; Delay (~125ms per call)
+delay_125ms:
+    ; Delay using BIOS timer tick (18.2Hz = +/- 55ms/tick)
+;    mov ah, 00h
+;    int 1Ah            ; Get current ticks into DX
+;    add dx, 3          ; Wait about 3 ticks (~165ms)
+;.wait:
+;    mov ah, 00h
+;    int 1Ah
+;    cmp dx, dx         ; Compare current tick
+;    jb .wait
+    mov ecx, 0xFFFF
+    .loop:
+        dec ecx
+        jnz .loop
+    ret
+
+; ==========================
+; BIOS string printer (terminated with '$')
+print_string:
+    mov ah, 09h
+    int 21h
+    ret
 
 display_bootlogo:
     ; First, set up the graphics mode
@@ -263,6 +312,11 @@ display_bootlogo:
     mov cx, 256           ; 256 colors
 
 .load_palette:
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
+    call delay_125ms
     lodsb                 ; R
     shr al, 2
     out dx, al
@@ -447,6 +501,16 @@ msg_superex_error db 'Could not display amount of Super-Extended XMS, tripartite
 kernel_name db 'KERNEL.COM$'
 err_msg     db 'Error launching KERNEL.COM$'
 newline db 13, 10, '$'
+
+disclaimer   db "Copyright (C) 2025 — Present, ProximalElk6186 and GitHub contributors",
+             db 13,10,"This program is free software; you can redistribute it and/or",
+             db 13,10,"modify it under the terms of the GNU General Public License as",
+             db 13,10,"published by the Free Software Foundation in the version 2",
+             db 13,10,"of the License.",
+             db 13,10,"This program is distributed in the hope that it will be useful,",
+             db 13,10,"but WITHOUT ANY WARRANTY; without even the implied warranty of",
+             db 13,10,"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+             db 13,10,"See the GNU General Public License for more details.",13,10,'$'
 
 buffer resb 12
 buffer_end:
