@@ -61,8 +61,8 @@ Add all of the tools to `path`.
 >   - Set up `DJGPP.ENV` correctly
 >   - Add `bin` directory to your system `PATH`
 > - A **_32-bit version of Windows_** (e.g. Windows XP) or **_real MS-DOS_**
->   - **64-bit Windows _cannot_ run DJGPP programs** due to lack of 16-bit support
->   - Alternatively, you can build inside **DOSBox**, **VirtualBox**, or on real hardware
+>	- **64-bit Windows _cannot_ run DJGPP programs** due to lack of 16-bit support
+>	- Alternatively, you can build inside **DOSBox**, **VirtualBox**, or on real hardware
 >
 > Regardless, **YOU MUST TEST THE KERNEL UNDER <ins>REAL DOS!</ins>** This is because Windows forces PMODE DOS apps to work in CPU ring 3 whereas tripartiteOS requires ring 0 access.
 
@@ -80,27 +80,7 @@ Add all of the tools to `path`.
 This section contains instructions on building tripartiteOS itself. You'll need a command-line environment like `Developer Command Prompt for VS` (Windows).
 
 You can use a convenience script `buildAll.bat` in the project's root.
-<!--#### 1. Build the 16-bit initialisation code
-```bash
-cd src16
-cd tos.com
-nasm -f bin tos.asm -o tos.com
-copy tos.com ..\..\build\
-```
-#### 2. Build the 32-bit part
-```bash
-cd ..\src32
-cl /c /O2 kernel32.c
-link /subsystem:native /entry:KernelMain kernel32.obj
-copy kernel32.obj ..\build\
-```
-#### 3. Build the 64-bit part
-```bash
-cd ../src64
-cl /c /O2 /favor:AMD64 kernel64.c
-link /machine:x64 /entry:KernelMain64 kernel64.obj
-```
----->
+
 ## Warranty Disclaimer
 Copyright (C) 2025 — `Present` `ProximalElk6186`
 

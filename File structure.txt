@@ -33,3 +33,53 @@ C:
 		}
 	}
 }
+
+Description:
+
+C:
+Your system drive
+
+	AUTOEXEC.BAT
+	Programs that run on startup
+	
+	CONFIG.SYS
+	Drivers that start on startup
+	
+	IO.SYS
+	MS-DOS system file
+	
+	MSDOS.SYS
+	MS-DOS system file
+	
+	DOS/
+	MS-DOS system files
+	
+	TRPRTOS/
+	Main directory of tripartiteOS
+	
+		SYSTEM.INI
+		tripartiteOS configuration file, contains different system-related parameters
+		
+		TRPRTOS.INI
+		tripartiteOS configuration file, contains different usermode application and system component parameters
+
+		SYSTEM/
+		tripartiteOS's system file directory
+	
+			HIMEMSX.EXE
+			Super Extended RAM manager
+		
+			TOS.COM
+			tripartiteOS real-mode initialization program
+		
+			KERNEL.EXE
+			tripartiteOS's protected mode kernel
+		
+			CWSDPR0.EXE
+			Ring 0 DPMI
+		
+			USERINT.EXE
+			tripartiteOS's User Interface (NOT the shell)
+		
+			DRIVERS/
+			tripartiteOS's drivers
