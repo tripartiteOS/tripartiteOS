@@ -1,4 +1,4 @@
-﻿╔═══════════════════════════════╗
+<!--﻿╔═══════════════════════════════╗
  
 ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║
 
@@ -18,9 +18,10 @@
 
 ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║
 
-╚═══════════════════════════════╝
-# ░░░tripartiteOS [wip]░░░░
-#### ░░░░░░░░░The triple-era OS░░░░░░░░░
+╚═══════════════════════════════╝-->
+
+# tripartiteOS [wip]
+#### The triple-era OS
 - 16-bit software? 32-bit? 64-bit? tripartiteOS runs all of them!
 - Fully DOS-compatible — flawlessly runs DOS programs as if you were running under a real DOS!
 
