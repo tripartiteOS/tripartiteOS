@@ -26,6 +26,10 @@
 - Fully DOS-compatible — flawlessly runs DOS programs as if you were running under a real DOS!
 
 You'll probably want more DOS tools and drivers, so check out [THIRD_PARTY.md](https://github.com/ProximalElk6186/tripartiteOS/blob/main/THIRD_PARTY.md) for a list of software included with official builds of tripartiteOS.
+
+## Quick links
+[README](https://github.com/ProximalElk6186/tripartiteOS/blob/main/README.md) | [License](https://github.com/ProximalElk6186/tripartiteOS/blob/main/LICENSE) | [Config file license](https://github.com/ProximalElk6186/tripartiteOS/blob/main/LICENSE.CONFIGS.md) | [Third-party tools bundled with official builds](https://github.com/ProximalElk6186/tripartiteOS/blob/main/THIRD_PARTY.md) | [Docs](https://github.com/ProximalElk6186/tripartiteOS/tree/main/Docs)
+------
 ### Why choosing between eras? Have them all!
 tripartiteOS flawlessly runs programs from the 80's, 90's and current day.
 ### Coordinate all programs no matter their age!
