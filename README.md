@@ -19,7 +19,7 @@
 ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║
 
 ╚═══════════════════════════════╝-->
-
+![tripartiteOS's logo](logo.png)
 # tripartiteOS [wip]
 #### The triple-era OS
 - 16-bit software? 32-bit? 64-bit? tripartiteOS runs all of them!
@@ -42,16 +42,24 @@ tripartiteOS is built using NASM and MSVC/GCC which are industry-leading tools!
 tripartiteOS lacks any telemetry, ensuring maximal privacy!
 ### Secure!
 tripartiteOS isn't vulnerable to any modern-day viruses, malware and threats meaning your data will be safe!
+## Current progress
+Being a WIP system, tripartiteOS is not yet fully complete. Here are the completeness percentages:
+
+- ![](https://progress-bar.xyz/99/?title=16-bit%20DOS-based%20initialization%20code)
+- ![](https://progress-bar.xyz/1/?title=32-bit%20kernel%20code)
+  - ![](https://progress-bar.xyz/0/?title=Context%20switching%20and%20multitasking)
+  - ![](https://progress-bar.xyz/0/?title=syscalls%20and%20system%20services)
+
 ## Build guide
 So, you want to build tripartiteOS yourself? Great! Follow the instructions given in this section to set up all of the required tools and compile the OS.
 ### Prerequisites
 #### Required Toolchain
-| Component                         | Purpose                               | Acquiring a copy                                                 |
-| :-------------------------------- | :------------------------------------ | :--------------------------------------------------------------- |
-| `NASM`                            | For assembling 16-bit startup code    | [nasm.us](https://www.nasm.us)                                   |
-| `DJGPP`                           | For compiling 32-bit parts            | [https://www.delorie.com/djgpp/](https://www.delorie.com/djgpp/) |
-| `DEBUG.EXE` or `DosBox`           | Optional DOS testing                  |                                                                  |
-| `QEMU`, `VMware`, or `VirtualBox` | To boot the OS                        |                                                                  |
+| Component                         | Purpose                               | Acquiring a copy                                                                                                                                                                                   |
+| :-------------------------------- | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NASM`                            | For assembling 16-bit startup code    | [nasm.us](https://www.nasm.us)                                                                                                                                                                     |
+| `DJGPP`                           | For compiling 32-bit parts            | [https://www.delorie.com/djgpp/](https://www.delorie.com/djgpp/)                                                                                                                                   |
+| `DEBUG.EXE` or `DOSBox`           | Optional DOS testing                  | `DEBUG.EXE` — included with MS-DOS. `DOSBox` — [https://www.dosbox.com/](https://www.dosbox.com/)                                                                                                  |
+| `QEMU`, `VMWare`, or `VirtualBox` | To boot the OS                        | `QEMU` — [https://www.qemu.org/](https://www.qemu.org/). `VMWare` — [https://www.vmware.com/](https://www.vmware.com/). `VirtualBox` — [https://www.virtualbox.org/](https://www.virtualbox.org/) |
 
 Add all of the tools to `path`.
 
@@ -59,11 +67,11 @@ Add all of the tools to `path`.
 > To compile the 32-bit kernel and utilities, you will need:
 > 
 > - **DJGPP** (tested with version 2.x)
->   - Set up `DJGPP.ENV` correctly
->   - Add `bin` directory to your system `PATH`
+>     - Set up `DJGPP.ENV` correctly
+>     - Add `bin` directory to your system `PATH`
 > - A **_32-bit version of Windows_** (e.g. Windows XP) or **_real MS-DOS_**
->	- **64-bit Windows _cannot_ run DJGPP programs** due to lack of 16-bit support
->	- Alternatively, you can build inside **DOSBox**, **VirtualBox**, or on real hardware
+>	  - **64-bit Windows _cannot_ run DJGPP programs** due to lack of 16-bit support
+>	  - Alternatively, you can build inside **DOSBox**, **VirtualBox**, or on real hardware
 >
 > Regardless, **YOU MUST TEST THE KERNEL UNDER <ins>REAL DOS!</ins>** This is because Windows forces PMODE DOS apps to work in CPU ring 3 whereas tripartiteOS requires ring 0 access.
 
