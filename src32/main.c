@@ -1,7 +1,46 @@
-#include <stdio.h>
+﻿#include <stdio.h>
+#include "defines/bugcheck/bugcheck.h"
+void kernel_panic(unsigned int errorCode);
+void HandlePanic(char errorCode[]);
+
 int main(void)
 {
 	unsigned short cs;
 	__asm__ volatile ("mov %%cs, %0" : "=r"(cs));
-	printf("CS = 0x%X (CPL = %d)\n", cs, cs & 3);
+	if (cs % 3 == 3) for (;;);	// Means you run it through Windows' NTVDM, it doesn't allow any ring 0 access, so we cannot use it
+}
+
+/// <summary>
+/// Prints an error message and halts the CPU.
+/// </summary>
+/// <param name="errorCode">Error code. Those are like Windows' bugcheck — you never know when one pops up ☻</param>
+void kernel_panic(unsigned int errorCode) 
+{
+	if (errorCode == 0xDEADBEEF | errorCode == 0xDEADDEAD) 
+	{
+		HandlePanic("MANUALLY_INITIATED_CRASH");
+	}
+	if (errorCode == 0x00000001) 
+	{
+		HandlePanic("MANUALLY_INITIATED_CRASH");
+	}
+}
+void HandlePanic(char errorCode[])
+{
+	printf(ERRCODE_BEGIN_GENERAL);
+	printf(errorCode);
+	printf(ERRCODE_TROUBLESHOOTING_BEGIN);
+	if (errorCode == "MANUALLY_INITIATED_CRASH") printf(MANUALLY_INITIATED_CRASH_TROUBLESHOOTING_STEPS);
+	if (errorCode == "KMODE_STACK_OVERFLOW_EXCEPTION") printf(KMODE_STACK_OVERFLOW_EXCEPTION_TROUBLESHOOTING_STEPS);
+
+	printf(ERRCODE_CONTACT_ADMIN);
+
+	// Halt the CPU
+	for (;;) 
+	{
+		__asm__ volatile (
+			"cli\n\t"
+			"hlt"
+		);
+	}
 }
