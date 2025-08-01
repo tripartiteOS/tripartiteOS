@@ -8,6 +8,8 @@ int main(void)
 	unsigned short cs;
 	__asm__ volatile ("mov %%cs, %0" : "=r"(cs));
 	if (cs % 3 == 3) for (;;);	// Means you run it through Windows' NTVDM, it doesn't allow any ring 0 access, so we cannot use it
+
+	kernel_panic(0xDEADBEEF);
 }
 
 /// <summary>
