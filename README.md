@@ -45,10 +45,10 @@ tripartiteOS isn't vulnerable to any modern-day viruses, malware and threats mea
 ## Current progress
 Being a WIP system, tripartiteOS is not yet fully complete. Here are the completeness percentages:
 
-- ![](https://progress-bar.xyz/99/?title=16-bit%20DOS-based%20initialization%20code)
-- ![](https://progress-bar.xyz/1/?title=32-bit%20kernel%20code)
-  - ![](https://progress-bar.xyz/0/?title=Context%20switching%20and%20multitasking)
-  - ![](https://progress-bar.xyz/0/?title=syscalls%20and%20system%20services)
+- ![](https://progress-bar.xyz/99/?title=16-bit%20DOS-based%20initialization%20code&style=neo-glass)
+- ![](https://progress-bar.xyz/1/?title=32-bit%20kernel%20code&style=neo-glass)
+  - ![](https://progress-bar.xyz/0/?title=Context%20switching%20and%20multitasking&style=neo-glass)
+  - ![](https://progress-bar.xyz/0/?title=syscalls%20and%20system%20services&style=neo-glass)
 
 ## Build guide
 So, you want to build tripartiteOS yourself? Great! Follow the instructions given in this section to set up all of the required tools and compile the OS.
