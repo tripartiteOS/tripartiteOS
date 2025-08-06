@@ -1,5 +1,6 @@
 ﻿#include <stdio.h>
 #include "defines/bugcheck/bugcheck.h"
+//#include "Interrupts/ints.c" //bugged & unfinished so commented-out ¯\_(ツ)_/¯
 void kernel_panic(unsigned int errorCode);
 void HandlePanic(char errorCode[]);
 
@@ -24,7 +25,7 @@ void kernel_panic(unsigned int errorCode)
 	}
 	if (errorCode == 0x00000001) 
 	{
-		HandlePanic("MANUALLY_INITIATED_CRASH");
+		HandlePanic("KMODE_STACK_OVERFLOW_EXCEPTION");
 	}
 }
 void HandlePanic(char errorCode[])

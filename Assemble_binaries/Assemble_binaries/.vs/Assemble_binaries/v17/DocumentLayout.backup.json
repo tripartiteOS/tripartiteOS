@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ProximalElk6186\\Documents\\GitHub\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|c:\\users\\proximalelk6186\\documents\\github\\tripartiteos\\assemble_binaries\\assemble_binaries\\assemble_binaries\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|solutionrelative:assemble_binaries\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|c:\\users\\proximalelk6186\\documents\\github\\tripartiteos\\assemble_binaries\\assemble_binaries\\assemble_binaries\\progressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|solutionrelative:assemble_binaries\\progressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|c:\\users\\proximalelk6186\\documents\\github\\tripartiteos\\assemble_binaries\\assemble_binaries\\assemble_binaries\\progressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|solutionrelative:assemble_binaries\\progressform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|c:\\users\\proximalelk6186\\documents\\github\\tripartiteos\\assemble_binaries\\assemble_binaries\\assemble_binaries\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|solutionrelative:assemble_binaries\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0D0EAF3F-FAF2-42DE-AD42-375A82A0CCAF}|Assemble_binaries\\Assemble_binaries.csproj|c:\\users\\proximalelk6186\\documents\\github\\tripartiteos\\assemble_binaries\\assemble_binaries\\assemble_binaries\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -30,11 +30,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ProgressForm.cs",
               "DocumentMoniker": "C:\\Users\\ProximalElk6186\\Documents\\GitHub\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\ProgressForm.cs",
               "RelativeDocumentMoniker": "Assemble_binaries\\ProgressForm.cs",
@@ -47,7 +47,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ProgressForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\ProximalElk6186\\Documents\\GitHub\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\ProgressForm.cs",
               "RelativeDocumentMoniker": "Assemble_binaries\\ProgressForm.cs",
@@ -59,13 +59,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\ProximalElk6186\\Documents\\GitHub\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\Form1.cs",
               "RelativeDocumentMoniker": "Assemble_binaries\\Form1.cs",
               "ToolTip": "C:\\Users\\ProximalElk6186\\Documents\\GitHub\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\Form1.cs",
               "RelativeToolTip": "Assemble_binaries\\Form1.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAQwH8AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAALYAAAAAAAAAAAAvwKoAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-06T08:19:08.974Z",
               "EditorCaption": ""

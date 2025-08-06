@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ProximalElk6186\\Documents\\GitHub\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries.csproj",
+      "projectUniqueName": "C:\\Users\\ProximalElk6186\\Desktop\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries.csproj",
       "projectName": "Assemble_binaries",
-      "projectPath": "C:\\Users\\ProximalElk6186\\Documents\\GitHub\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries.csproj",
+      "projectPath": "C:\\Users\\ProximalElk6186\\Desktop\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries.csproj",
       "packagesPath": "C:\\Users\\ProximalElk6186\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ProximalElk6186\\Documents\\GitHub\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\obj\\",
+      "outputPath": "C:\\Users\\ProximalElk6186\\Desktop\\tripartiteOS\\Assemble_binaries\\Assemble_binaries\\Assemble_binaries\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -75,7 +75,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
