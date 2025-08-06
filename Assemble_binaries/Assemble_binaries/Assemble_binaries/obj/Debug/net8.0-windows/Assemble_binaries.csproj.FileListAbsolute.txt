@@ -1,0 +1,17 @@
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\bin\Debug\net8.0-windows\Assemble_binaries.exe
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\bin\Debug\net8.0-windows\Assemble_binaries.deps.json
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\bin\Debug\net8.0-windows\Assemble_binaries.runtimeconfig.json
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\bin\Debug\net8.0-windows\Assemble_binaries.dll
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\bin\Debug\net8.0-windows\Assemble_binaries.pdb
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.Form1.resources
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.csproj.GenerateResource.cache
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.AssemblyInfoInputs.cache
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.AssemblyInfo.cs
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.csproj.CoreCompileInputs.cache
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.sourcelink.json
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.dll
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\refint\Assemble_binaries.dll
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.pdb
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\Assemble_binaries.genruntimeconfig.cache
+C:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\Assemble_binaries\Assemble_binaries\Assemble_binaries\obj\Debug\net8.0-windows\ref\Assemble_binaries.dll

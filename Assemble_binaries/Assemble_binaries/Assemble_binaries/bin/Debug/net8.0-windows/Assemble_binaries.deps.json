@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Assemble_binaries/1.0.0": {
+        "runtime": {
+          "Assemble_binaries.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Assemble_binaries/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
