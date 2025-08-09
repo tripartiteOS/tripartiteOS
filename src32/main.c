@@ -26,6 +26,10 @@ void kernel_panic(unsigned int errorCode)
 	{
 		HandlePanic("MANUALLY_INITIATED_CRASH");
 	}
+	if (errorCode == 0x00000002)
+	{
+		HandlePanic("NTVDM_LAUNCH");
+	}
 }
 void HandlePanic(char errorCode[])
 {
@@ -34,6 +38,7 @@ void HandlePanic(char errorCode[])
 	printf(ERRCODE_TROUBLESHOOTING_BEGIN);
 	if (errorCode == "MANUALLY_INITIATED_CRASH") printf(MANUALLY_INITIATED_CRASH_TROUBLESHOOTING_STEPS);
 	if (errorCode == "KMODE_STACK_OVERFLOW_EXCEPTION") printf(KMODE_STACK_OVERFLOW_EXCEPTION_TROUBLESHOOTING_STEPS);
+	if (errorCode == "NTVDM_LAUNCH") printf(NTVDM_LAUNCH_TROUBLESHOOTING_STEPS);
 
 	printf(ERRCODE_CONTACT_ADMIN);
 

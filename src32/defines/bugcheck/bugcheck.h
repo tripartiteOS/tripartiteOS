@@ -10,3 +10,4 @@
 
 #define MANUALLY_INITIATED_CRASH_TROUBLESHOOTING_STEPS "\nThe user has manually initiated a system crash.\n\n\n\n"
 #define KMODE_STACK_OVERFLOW_EXCEPTION_TROUBLESHOOTING_STEPS "\nA Stack Overflow exception has occurred.\nThis is either a problem with the kernel, a driver or an another kmode app.\n\n\n"
+#define NTVDM_LAUNCH_TROUBLESHOOTING_STEPS "\nThe kernel appears to have been launched through Windows' NTVDM.\n It does not provide the required ring zero access and therefore launching tripartiteOS in it is impossible.\n\n\n"
