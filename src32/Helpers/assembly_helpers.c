@@ -1,0 +1,1 @@
+#define asm(cmd) (cmd + "\n\t")

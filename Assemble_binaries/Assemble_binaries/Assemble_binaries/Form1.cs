@@ -143,7 +143,7 @@ namespace Assemble_binaries
             "https://github.com/Baron-von-Riedesel/HimemSX/releases/download/v3.54/HimemSX_v354.zip",
             "https://github.com/crazii/SBEMU/releases/download/Release_1.0.0-beta.5/SBEMU.zip"
         };
-
+        /*
         private async Task DownloadFileAsync(string url, string outputPath)
         {
             using (HttpClient client = new HttpClient())
@@ -168,12 +168,12 @@ namespace Assemble_binaries
                         if (canReportProgress)
                         {
                             int progress = (int)((totalRead * 100) / totalBytes);
-                            progressBar1.Invoke((Action)(() => progressBar1.Value = progress));
+                             progress));
                         }
                     }
                 }
-            }
-        }
+            }*/
+        //}
 
         private void ExtractZip(string zipFilePath, string extractToFolder)
         {
@@ -183,7 +183,7 @@ namespace Assemble_binaries
             ZipFile.ExtractToDirectory(zipFilePath, extractToFolder);
         }
 
-        private async Task CopyFilesWithProgress(string sourceDir, string targetDir)
+/*        private async Task CopyFilesWithProgress(string sourceDir, string targetDir)
         {
             var files = Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories);
             int totalFiles = files.Length;
@@ -202,6 +202,6 @@ namespace Assemble_binaries
                 await Task.Delay(10); // simulate I/O delay if copying is too fast
                 progressBar1.Invoke((Action)(() => progressBar1.Value = progress));
             }
-        }
+        }*/
     }
 }
