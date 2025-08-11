@@ -156,58 +156,6 @@ print_eax_as_decimal:
     pop ax
     ret
 
-;pmode_init:
-;    cli
-;
-;    in al, 0x92
-;    or al, 2
-;    out 0x92, al
-;
-;    lgdt [gdt_descriptor]
-;mov eax, cr0 
-;or al, 1       ; set PE (Protection Enable) bit in CR0 (Control Register 0)
-;mov cr0, eax
-;
-;    jmp 0x08:pmode_entry_point   ; 0x08 = code segment selector
-;    
-;align 16
-;gdt:
-;    gdt_null:
-;        dq 0        
-;    
-;    gdt_code32:
-;    
-;    dw 0xFFFFF              ; Limit (15:0)
-;    dw 0x0000              ; Base  (15:0)
-;    db 0x00                ; Base  (23:16)
-;    db 0x9A           ; Access byte
-;    db 0xC         ; Flags (4-bit limit + 4-bit flags)
-;    db 0x00                ; Base  (31:24) 
-;    
-;    gdt_data32:
-;        dw 0xFFFF
-;        dw 0x0000
-;        db 0x00
-;        db 10010010b          
-;        db 11001111b
-;        db 0x00
-;gdt_end:
-;
-;gdt_descriptor:
-;    dw gdt_end - gdt - 1
-;    dd gdt
-;
-;pmode_entry_point:
-;    [bits 32]
-;    mov ax, 0x10    ; data selector
-;    mov ds, ax
-;    mov es, ax
-;    mov fs, ax
-;    mov gs, ax
-;    mov ss, ax
-;    jmp $
-    ; yahoo we should be in pmode now
-
 display_disclaimer:
     ; Set video mode (optional, e.g., 03h = 80x25 text)
     mov ah, 0
@@ -218,9 +166,6 @@ display_disclaimer:
     mov dx, disclaimer
     call print_string
 
-    ; Delay ~0.5 seconds
-    ;mov cx, 4         ; Loop this delay for better visibility
-;delay_loop:
     call delay_125ms
     call delay_125ms
     call delay_125ms
@@ -231,20 +176,11 @@ display_disclaimer:
     call delay_125ms
     call delay_125ms
     call delay_125ms
-;    loop delay_loop
+
     call display_bootlogo
 ; ==========================
 ; Delay (~125ms per call)
 delay_125ms:
-    ; Delay using BIOS timer tick (18.2Hz = +/- 55ms/tick)
-;    mov ah, 00h
-;    int 1Ah            ; Get current ticks into DX
-;    add dx, 3          ; Wait about 3 ticks (~165ms)
-;.wait:
-;    mov ah, 00h
-;    int 1Ah
-;    cmp dx, dx         ; Compare current tick
-;    jb .wait
     mov ecx, 0xFFFF
     .loop:
         dec ecx
@@ -262,45 +198,6 @@ display_bootlogo:
     ; First, set up the graphics mode
     mov ax, 0x13
     int 0x10
-    
-
-    ; Temporarily commented-out (couldn't get the higher-res mode to work correcty, but who cares?)
-;    ; Unlock CRTC registers (bit 7 of register 0x11 must be cleared)
-;mov dx, 0x3D4
-;mov al, 0x11
-;out dx, al
-;inc dx
-;in al, dx
-;and al, 0x7F
-;out dx, al
-;
-;; Set max scanline register (register 0x09) to 0x00 (8 scanlines per char, not 16)
-;mov dx, 0x3D4
-;mov al, 0x09
-;out dx, al
-;inc dx
-;mov al, 0x00
-;out dx, al
-;
-;; Disable double-scanning: clear bit 7 of register 0x09
-;mov dx, 0x3D4
-;mov al, 0x09
-;out dx, al
-;inc dx
-;in al, dx
-;and al, 0x7F        ; clear bit 7
-;out dx, al
-;
-;; Set vertical display end (register 0x12) to 399
-;mov dx, 0x3D4
-;mov al, 0x12
-;out dx, al
-;inc dx
-;mov al, 399         ; Actually 399 == 0x8F
-;out dx, al
-;
-
-
 
     ; Then load the palette
     mov dx, 0x3C8
@@ -333,9 +230,6 @@ display_bootlogo:
     xor di, di
     mov cx, image_size
     rep movsb
-    ;jmp $
-    ;call pal_fadein
-    ;jmp $
 
 loop_start:
     call scroll_bottom
@@ -410,79 +304,6 @@ clear_bottom_line:
     pop ds
     ret
 
-; Assumes that the target palette is loaded at [PALETTE_SEG:PALETTE_OFF]
-; and you are already in the right VGA modes
-; heck it isn't even used
-pal_fadein:
-    xor cx, cx  ; cx is our step counter
-    .fade_step:
-        push cx
-        mov si, PALETTE_OFF
-        mov ax, 0x0A000
-        mov es, ax
-        mov di, 0   ; Write from offset 0
-
-        mov dx, 0x3C8
-        xor al, al
-        out dx, al  ; Set palette write index to 0
-
-        inc dx      ; 0x3C9 DAC data port
-
-        ; 256 total colors
-        mov bx, 256
-    .color_loop:
-        ; Read color values from [0x0A000:si]
-        ;mov al, 0x0A000:8000
-        mov ah, cl
-        mul ah
-        mov bl, FADE_STEPS
-        div bl
-        out dx, al
-        inc si
-    
-        ;mov al, [0x0A000:si]
-        mov ah, cl
-        mul ah
-        div bl
-        out dx, al
-        inc si
-    
-        ;mov al, [0x0A000:si]
-        mov ah, cl
-        div bl
-        mul ah
-        out dx, al
-        inc si
-    
-        dec bx
-        jnz .color_loop
-    
-        ; Delay between steps
-        call delay
-    
-        pop cx
-        inc cx
-        cmp cx, FADE_STEPS
-        jb .fade_step
-    
-        ; Done
-        jmp $
-    
-    ;s
-    ;delay:
-    ;    push cx
-    ;    push dx
-    ;    mov cx, 0FFFFh
-    ;.d1:
-    ;    mov dx, 0FFFFh
-    ;.d2:
-    ;    dec dx
-    ;    jnz .d2
-    ;    dec cx
-    ;    jnz .d1
-    ;    pop dx
-    ;    pop cx
-    ;    ret
 start_kernel:
     mov dx, kernel_name  ; DS:DX -> filename
     mov ax, 0x4B00        ; EXEC function: load & execute
