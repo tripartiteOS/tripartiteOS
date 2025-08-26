@@ -5,6 +5,7 @@
 | [CuteMouse (CTMOUSE)](https://cutemouse.sourceforge.net/)       | Lightweight DOS mouse driver                                                           | GPL v2              | [Website](https://cutemouse.sourceforge.net/)           |
 | [HIMEMSX](https://github.com/Baron-von-Riedesel/HIMEMX)         | XMS memory manager used for extended memory access, allowing for more than 4 GB of RAM | GPL v2              | [GitHub](https://github.com/Baron-von-Riedesel/HimemSX) |
 | [SBEMU](https://github.com/crazii/SBEMU)                        | Sound Blaster emulator for modern sound cards                                          | GPL v2              | [GitHub](https://github.com/crazii/SBEMU)               |
+| [CSMWrap](https://github.com/FlyGoat/CSMWrap)                   | **Experimental** Legacy BIOS emulator for newer UEFI Class 3 PCs                       | LGPL v2.1               | [GitHub](https://github.com/FlyGoat/CSMWrap)            | 
 
 > [!IMPORTANT]
-> MS-DOS 5.0 or 6.x is not distributed with tripartiteOS, and is not open-source. You must supply your own copy of MS-DOS to run tripartiteOS. While MS-DOS is often referred to as "abandonware," this term has no legal standing, so legally we cannot provide a copy of MS-DOS. FreeDOS may work but we didn't bother testing
+> You will need a copy of either MS-DOS 5.0+ (we can't provide it due to legal reasons) or [FreeDOS](https://www.freedos.org/) (preferred).
