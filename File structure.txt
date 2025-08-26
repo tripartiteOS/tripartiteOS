@@ -28,7 +28,8 @@ C:
 				CTMOUSE.EXE
 				JLOAD.EXE
 				QPIEMU.DLL
-				HDPMI32i
+				HDPMI32i.EXE
+				SBEMU.EXE
 			}
 		}
 	}

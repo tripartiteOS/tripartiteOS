@@ -1,0 +1,1 @@
+This folder is used for build preparations, mainly to compose the file structure of the final product. You must have a MINIMAL NON-LEGACY LiveCD version of FreeDOS deployed onto your target flash drive. Remember not to include this file with the binaries!!!
