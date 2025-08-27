@@ -310,9 +310,24 @@ start_kernel:
     int 0x21              ; call DOS
     jc  start_kernel_error             ; if CF set, jump to error
 
-    ; Program launched successfully, exit
-    mov ax, 0x4C00
+    ; Kernel apparently loaded successfully, so the code after this comment won't run until we return from the kernel
+    ; We're either shutting down or restarting, so AX won't be used. We'll tell if we're restarting by the value of AX
+    ; If it is 0, we're shutting down. If it is 1, we're restarting.
+    cmp ax, 0
+    je  shutdown_system
+    cmp ax, 1
+    je  restart_system
+
+shutdown_system:
+    ; Print shutdown message
+    mov dx, safetoshutdown
+    mov ah, 9
     int 0x21
+    hlt ; No ACPI
+
+restart_system:
+    jmp FFFF:0 ; Reset vector
+
 start_kernel_error:
     ; Print error message
     mov dx, err_msg
@@ -337,8 +352,8 @@ starting_tos db 'Starting tripartiteOS...$'
 msg_superex_success db 'Super-Extended XMS is available, largest block (KB): $'
 msg_superex_total db 13, 10, 'Total available (KB): $'
 msg_superex_error db 'Could not display amount of Super-Extended XMS, tripartiteOS is unable to start.$'
-kernel_name db 'KERNEL.COM$'
-err_msg     db 'Error launching KERNEL.COM$'
+kernel_name db 'KERNEL.EXE$'
+err_msg     db 'Error launching KERNEL.EXE$'
 newline db 13, 10, '$'
 
 disclaimer   db "Copyright (C) 2025 — Present, ProximalElk6186 and GitHub contributors",
@@ -350,6 +365,8 @@ disclaimer   db "Copyright (C) 2025 — Present, ProximalElk6186 and GitHub contri
              db 13,10,"but WITHOUT ANY WARRANTY; without even the implied warranty of",
              db 13,10,"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
              db 13,10,"See the GNU General Public License for more details.",13,10,'$'
+
+safetoshutdown db 13,10,"It is now safe to turn off your computer.",'$'
 
 buffer resb 12
 buffer_end:
