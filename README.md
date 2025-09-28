@@ -53,6 +53,8 @@ Being a WIP system, tripartiteOS is not yet fully complete. Here are the complet
 - ![](https://progress-bar.xyz/1/?title=32-bit%20kernel%20code&style=neo-glass)
   - ![](https://progress-bar.xyz/0/?title=Context%20switching%20and%20multitasking&style=neo-glass)
   - ![](https://progress-bar.xyz/0/?title=syscalls%20and%20system%20services&style=neo-glass)
+- ![](https://progress-bar.xyz/0/?title=64-bit%20kernel%20code&style=neo-glass)
+- ![](https://progress-bar.xyz/0/?title=Usermode,%20IPC%20and%20etc&style=neo-glass)
 
 ## Build guide
 So, you want to build tripartiteOS yourself? Great! Follow the instructions given in this section to set up all of the required tools and compile the OS.
@@ -98,13 +100,21 @@ You can use a convenience script `buildAll.bat` in the project's root.
 Copyright (C) 2025 — `Present` `ProximalElk6186`
 
 This program is free software; you can redistribute it and/or modify
+
 it under the terms of the GNU General Public License as published by
+
 the Free Software Foundation in the version 2 of the License.
 
+
 This program is distributed in the hope that it will be useful,
+
 but WITHOUT ANY WARRANTY; without even the implied warranty of
+
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
 GNU General Public License for more details.
 
+
 You should have received a copy of the GNU General Public License along
+
 with this program.
