@@ -8,4 +8,4 @@
 | [CSMWrap](https://github.com/FlyGoat/CSMWrap)                   | **Experimental** Legacy BIOS emulator for newer UEFI Class 3 PCs                       | LGPL v2.1               | [GitHub](https://github.com/FlyGoat/CSMWrap)            | 
 
 > [!IMPORTANT]
-> You will need a copy of either MS-DOS 5.0+ (we can't provide it due to legal reasons) or [FreeDOS](https://www.freedos.org/) (preferred).
+> You will need a copy of [FreeDOS](https://www.freedos.org/) to run tripartiteOS. It is not bundled with tripartiteOS, you need to install it yourself, but it is libre software!
