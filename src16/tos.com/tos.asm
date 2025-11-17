@@ -326,7 +326,7 @@ shutdown_system:
     hlt ; No ACPI
 
 restart_system:
-    jmp FFFF:0 ; Reset vector
+    jmp 0xFFFF:0 ; Reset vector
 
 start_kernel_error:
     ; Print error message
