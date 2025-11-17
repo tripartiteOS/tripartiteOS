@@ -92,7 +92,7 @@ Add all of the tools to `path`.
 | `common\` | Shared libraries, headers, and utilities			|
 | `build\`  | Compiled objects and final binaries				|
 ### Building Steps
-This section contains instructions on building tripartiteOS itself. You'll need a command-line environment like `Developer Command Prompt for VS` (Windows).
+This section contains instructions on building tripartiteOS itself. You'll need a command-line environment.
 
 You can use a convenience script `buildAll.bat` in the project's root.
 
