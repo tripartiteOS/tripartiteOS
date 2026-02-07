@@ -30,6 +30,12 @@ C:
 				QPIEMU.DLL
 				HDPMI32i.EXE
 				SBEMU.EXE
+                                UNISOUND.COM
+			}
+			DRVINIT
+			{
+				AUDMDRN.BAT
+				AUDOLD.BAT
 			}
 		}
 	}

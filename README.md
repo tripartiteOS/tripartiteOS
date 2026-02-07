@@ -97,7 +97,7 @@ This section contains instructions on building tripartiteOS itself. You'll need 
 You can use a convenience script `buildAll.bat` in the project's root.
 
 ## Warranty Disclaimer
-Copyright (C) 2025 — `Present` `ProximalElk6186`
+Copyright (C) 2025, 2026 — `Present` `ProximalElk6186`
 
 This program is free software; you can redistribute it and/or modify
 

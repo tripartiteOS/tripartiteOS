@@ -52,3 +52,13 @@ void HandlePanic(char errorCode[])
 		);
 	}
 }
+int SetVideoMode(unsigned char mode)
+{
+	__asm__ volatile (
+		"mov al, %0\n\t"
+		"int $0x10"
+		:
+		: "r"(mode)
+	);
+	return 0;
+}
