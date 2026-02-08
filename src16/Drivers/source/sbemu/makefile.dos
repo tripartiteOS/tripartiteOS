@@ -1,0 +1,65 @@
+TARGET := output/sbemu.exe
+CC := gcc
+CXX := gxx
+
+ifeq ($(DEBUG),)
+override DEBUG = 0
+endif
+
+DEBUG ?= 0
+
+VERSION ?= LOCAL_DOS
+
+RM := del
+
+INCLUDES := -I./mpxplay -I./sbemu
+DEFINES := -D__DOS__ -DSBEMU -DDEBUG=$(DEBUG) -DMAIN_SBEMU_VER=\"$(VERSION)\"
+CFLAGS := -fcommon -march=i386 -Os $(INCLUDES) $(DEFINES)
+LDFLAGS := -lstdcxx -lm
+
+ifeq ($(DEBUG),0)
+LDFLAGS += -s
+CFLAGS += -DNDEBUG
+endif
+
+ifeq ($(V),1)
+SILENTCMD :=
+SILENTMSG := @echo > nul
+else
+SILENTCMD := @
+SILENTMSG := @echo
+endif
+
+VPATH += .
+VPATH += sbemu
+VPATH += sbemu/dpmi
+VPATH += sbemu/dpmi/djgpp
+VPATH += mpxplay/au_cards
+
+all: $(TARGET)
+
+EXCLUDE := 
+
+SRC := $(notdir $(shell dir *.c /b/s/l/-p) $(shell dir *.cpp /b/s/l/-p))
+SRC := $(filter-out $(EXCLUDE), $(SRC))
+OBJS := $(patsubst %.cpp,output/%.o,$(patsubst %.c,output/%.o,$(SRC)))
+
+$(TARGET): $(OBJS)
+	$(SILENTMSG) LINK $@
+	$(SILENTCMD)$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+output/%.o: %.c
+	$(SILENTMSG) CC $@
+	$(SILENTCMD)$(CC) $(CFLAGS) -c $< -o $@
+
+output/%.o: %.cpp
+	$(SILENTCMD)$(SILENTMSG) CXX $@
+	$(SILENTCMD)$(CXX) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(SILENTMSG) CLEAN
+	$(SILENTCMD)$(RM) output\*.o
+
+distclean: clean
+	$(SILENTMSG) DISTCLEAN
+	$(SILENTCMD)$(RM) $(TARGET)
