@@ -1,6 +1,6 @@
 @ECHO OFF
 PROMPT $P$G
-SET PATH=C:\DOS,C:\TRPRTOS;C:\TRPRTOS\SYSTEM;C:\TRPRTOS\SYSTEM\DRIVERS
+C:\pathcfg.bat
 
 :: Go to whichever option the user selected in the boot menu through CONFIG.SYS
 GOTO %CONFIG%

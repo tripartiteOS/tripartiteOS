@@ -5,6 +5,7 @@ C:
 {
 	AUTOEXEC.BAT
 	CONFIG.SYS
+	PATHCFG.BAT
 	IO.SYS
 	MSDOS.SYS
 	DOS
@@ -17,26 +18,56 @@ C:
 		TRPRTOS.INI
 		SYSTEM
 		{
-
 			TOS.COM
 			KERNEL.EXE
 			CWSDPR0.EXE
 			USERINT.EXE
 			DRIVERS
 			{
+				COM2EXE.EXE
+				CTM-BR.EXE
+				CTM-DE.EXE
+				CTMDEBUG.EXE
+				CTM-EN.EXE
+				CTM-ES.EXE
+				CTM-FR.EXE
+				CTM-HU.EXE
+				CTM-IT.EXE
+				CTM-NL.EXE
+				CTMOUSE.EXE
+				CTM-PL.EXE
+				CTM-PT.EXE
+				CTM-SK.EXE
+				HDPMI32i.EXE
 				HIMEMSX.EXE
 				JEMM386.EXE
-				CTMOUSE.EXE
 				JLOAD.EXE
 				QPIEMU.DLL
-				HDPMI32i.EXE
 				SBEMU.EXE
-                                UNISOUND.COM
+				SRDEMS.SYS
+				SRDEMS3.SYS
+				SRDEMSS.SYS
+				SRDISK.EXE
+				SRDUMMY.SYS
+				SRDXMS.SYS
+				SRDXMSS.SYS
+                UNISOUND.COM
+				XCDROM.SYS
+				XMSSIZE.EXE
 			}
 			DRVINIT
 			{
 				AUDMDRN.BAT
 				AUDOLD.BAT
+				CDROM.BAT
+				MOUSE.BAT
+				MOUSEWHL.BAT
+				RAMDRV.BAT
+				TRPRTOS.BAT
+			}
+			PKGAPI
+			{
+				REQSYSRB.COM
 			}
 		}
 	}
@@ -74,9 +105,6 @@ Your system drive
 		SYSTEM/
 		tripartiteOS's system file directory
 	
-			HIMEMSX.EXE
-			Super Extended RAM manager
-		
 			TOS.COM
 			tripartiteOS real-mode initialization program
 		
@@ -91,3 +119,45 @@ Your system drive
 		
 			DRIVERS/
 			tripartiteOS's drivers
+
+				COM2EXE.EXE
+				CTM-BR.EXE
+				CTM-DE.EXE
+				CTMDEBUG.EXE
+				CTM-EN.EXE
+				CTM-ES.EXE
+				CTM-FR.EXE
+				CTM-HU.EXE
+				CTM-IT.EXE
+				CTM-NL.EXE
+				CTMOUSE.EXE
+				CTM-PL.EXE
+				CTM-PT.EXE
+				CTM-SK.EXE
+				CuteMouse's driver files
+
+				HDPMI32i.EXE
+				JEMM386.EXE
+				JLOAD.EXE
+				QPIEMU.DLL
+				SBEMU.EXE
+				SBEMU's driver files
+
+				HIMEMSX.EXE
+				Super Extended Memory Manager
+
+				SRDEMS.SYS
+				SRDEMS3.SYS
+				SRDEMSS.SYS
+				SRDISK.EXE
+				SRDUMMY.SYS
+				SRDXMS.SYS
+				SRDXMSS.SYS
+				XMSSIZE.EXE
+				RAM Drive's driver's files
+
+				UNISOUND.COM
+				Legacy PnP sound card driver
+
+				XCDROM.SYS
+				CD-ROM driver
