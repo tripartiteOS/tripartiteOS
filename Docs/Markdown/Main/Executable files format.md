@@ -41,8 +41,11 @@ The format of tpOS64 executables is similar to tpOS32 executables, but with the 
 - The DOS stub outputs the following message:
 `This 64-bit program requires tripartiteOS to run.`
 
->[!WARNING]
+> [!WARNING]
 > The CPU architecture of the executable must be supported by the version of tripartiteOS you are using. The following table shows the supported CPU architectures for each version of tripartiteOS:
-| CPU Architecture | Supported app Architectures  |
-|------------------|------------------------------|
-| x86_32           | tpOS16, tpOS32, DOS16, DOS32 |
+> | CPU Architecture | Supported app Architectures                  |
+> |------------------|----------------------------------------------|
+> | x86_32           | tpOS16, tpOS32, DOS16, DOS32                 |
+> | x86_64           | tpOS16, tpOS32, tpOS64, DOS16, DOS32, DOS64* |
+>
+> <sup>*Despite what most people think, you can indeed write DOS applications that work in long mode.</sup>
