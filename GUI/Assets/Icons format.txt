@@ -1,0 +1,14 @@
+Icons are in a special .TPI format.
+This is a renamed .7z archive.
+Inside is a folder named by the icon name.
+Inside are the icons in different sizes:
+16x16px
+32x32px
+48x48px
+64x64px
+80x80px
+96x96px
+128x128px
+512x512px
+At least one size is required.
+The icons themselves are in a .PNG format.
