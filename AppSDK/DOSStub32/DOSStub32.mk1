@@ -1,0 +1,18 @@
+!define BLANK ""
+W:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\AppSDK\DOSStub32\doss&
+tub32.obj : W:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\AppSDK\DO&
+SStub32\dosstub32.c .AUTODEPEND
+ @W:
+ cd W:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\AppSDK\DOSStub32
+ *wcc dosstub32.c -fo=.obj -i="C:\WATCOM/h" -w4 -e25 -zq -od -d2 -bt=dos -ml
+
+W:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\AppSDK\DOSStub32\DOSS&
+tub32.exe : W:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\AppSDK\DO&
+SStub32\dosstub32.obj .AUTODEPEND
+ @W:
+ cd W:\Users\ProximalElk6186\Documents\GitHub\tripartiteOS\AppSDK\DOSStub32
+ @%write DOSStub32.lk1 FIL dosstub32.obj
+ @%append DOSStub32.lk1 
+ *wlink name DOSStub32 d all sys dos op m op maxe=25 op q op symf @DOSStub32&
+.lk1
+
