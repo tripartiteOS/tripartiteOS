@@ -377,11 +377,11 @@ total_mem_kb dd 0
 
 section .data
 logo_palette:
-    incbin "neologo/logo.data.pal"
+    incbin "./src16/toscom/neologo/logo.data.pal"
 logo_palette_end:
 
 logo_image:
-    incbin "neologo/logo.data"
+    incbin "./src16/toscom/neologo/logo.data"
 logo_image_end:
 
 scroll_start_line equ 184
